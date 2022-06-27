@@ -31,13 +31,13 @@ type Location struct {
 
 type Float64 float64
 
-func (f *Float64) UnmarshalJSON(b []byte) (err error) {
-	s := strings.Trim(string(b), `"-`)
-	if s == "" {
-		*f = 0
-		return
-	}
+func (f *Float64) UnmarshalJSON(b []byte) error {
+	s := strings.Trim(string(b), `"`)
 	nt, err := strconv.ParseFloat(s, 64)
+	if err != nil {
+		*f = 0.0
+		return nil
+	}
 	*f = Float64(nt)
-	return
+	return nil
 }
