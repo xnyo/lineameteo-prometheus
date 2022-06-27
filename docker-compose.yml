@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  lineameteo-prometheus:
+    build: .
+    ports:
+      - "0.0.0.0:9199:3000"
+    environment:
+      - HTTP_LISTEN_ADDR=0.0.0.0:3000
+      - WANTED_LOCATION_IDS=1793,2166
